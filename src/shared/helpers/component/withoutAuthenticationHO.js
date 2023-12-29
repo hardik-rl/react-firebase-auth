@@ -3,7 +3,7 @@ import { getToken } from "./utils"
 
 const withoutAuthenticationHO = (ComposedComponent) => {
     const Component = (props) =>{
-        if(getToken('HomehubToken')){
+        if(getToken('AuthToken')){
            return <Navigate to="/" />
         }
         return <ComposedComponent {...props}/>

@@ -3,10 +3,10 @@ import { getToken } from "./utils";
 
 const withAuthenticationHO = (ComposedComponent) => {
     const Component = (props) =>{
-        if(getToken('HomehubToken')){
+        if(getToken('AuthToken')){
            return  <ComposedComponent {...props}/>
         }
-        return <Navigate to={"/homehub/login"}/>
+        return <Navigate to={"auth/login"}/>
     }
     return <Component />
 }

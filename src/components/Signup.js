@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from "firebase/auth";
 import { app } from "../firebase";
 import FormLabel from "../shared/components/FormLabel";
 import FormControl from "../shared/components/FormControl";
@@ -16,6 +16,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password);
+    sendEmailVerification(auth.currentUser);
   };
   return (
     <form

@@ -1,8 +1,16 @@
 import React from "react";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import profileLogo from "../../img/profile-picture.jpeg";
+import { removeToken } from "../helpers/component/utils";
 
 const Header = ({ user, auth, signOut }) => {
+  // console.log(auth);
+  const logoutHandle = () => {
+    removeToken("AuthToken");
+    signOut(auth);
+    console.log("sassas", auth, user);
+  }
+
   return (
     <div>
       <Navbar fluid rounded>
@@ -29,7 +37,7 @@ const Header = ({ user, auth, signOut }) => {
                 </span>
               </Dropdown.Header>
             )}
-            <Dropdown.Item onClick={() => signOut(auth)}>Logout</Dropdown.Item>
+            <Dropdown.Item onClick={logoutHandle}>Logout</Dropdown.Item>
           </Dropdown>
           <Navbar.Toggle />
         </div>
