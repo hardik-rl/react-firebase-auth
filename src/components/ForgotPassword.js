@@ -8,7 +8,7 @@ import { setToken } from "../shared/helpers/component/utils";
 
 const auth = getAuth(app);
 
-const Login = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Login = () => {
       className="max-w-lg mx-auto mt-20"
     >
       <h1 className="mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-        Login
+      Forgot Password
       </h1>
 
       <div className="relative z-0 w-full mb-5 group">
@@ -49,7 +49,7 @@ const Login = () => {
         <FormLabel name="Password" htmlFor="floating_password" />
       </div>
       <div className="mb-4 text-right">
-        <Link className="text-indigo-600 text-md font-bold" to="/auth/forgot-password">
+        <Link className="text-indigo-600 text-md font-bold" to="/auth/signup">
         Forgot Password
         </Link>
       </div>
@@ -63,4 +63,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

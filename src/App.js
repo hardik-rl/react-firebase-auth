@@ -9,6 +9,7 @@ import withAuthenticationHO from "../src/shared/helpers/component/withAuthentica
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "./firebase";
 import { useState } from "react";
+import ForgotPassword from "./components/ForgotPassword";
 const auth = getAuth(app);
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route index element={<Navigate to={"login"} />} />
         <Route path="signup" element={<Signup />} />
         <Route path="login" element={<Login />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
