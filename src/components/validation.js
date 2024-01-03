@@ -11,3 +11,7 @@ export const loginSchema = object({
   email: string().trim().email().required(),
   password: string().required()
 });
+
+export const forgotPasswordSchema = object({
+  email: string().email().required(),
+});

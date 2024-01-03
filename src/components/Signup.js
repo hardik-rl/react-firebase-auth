@@ -12,12 +12,14 @@ import { toast } from "react-toastify";
 import { useMutation } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { signupSchema } from "./validation";
+import clsx from "clsx";
+import { Spinner } from "flowbite-react";
 
 const auth = getAuth(app);
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { mutate: mutateSignupFn } = useMutation(
+  const { mutate: mutateSignupFn, isLoading: signUpIsLoading } = useMutation(
     (data) => createUserWithEmailAndPassword(auth, data.email, data.password),
     {
       onSuccess: () => {
@@ -57,25 +59,36 @@ const Signup = () => {
           type="email"
           onChange={formik.handleChange}
           name="email"
+          className={clsx({ "is-error": formik.errors.email })}
           value={formik.values.email}
         />
         <FormLabel name="Email address" htmlFor="floating_email" />
+        <span className="text-red-500 text-xs">{formik.errors.email}</span>
       </div>
       <div className="relative z-0 w-full mb-5 group">
         <FormControl
           type="password"
           onChange={formik.handleChange}
           name="password"
+          className={clsx({ "is-error": formik.errors.password })}
           value={formik.values.password}
         />
         <FormLabel name="Password" htmlFor="floating_password" />
+        <span className="text-red-500 text-xs">{formik.errors.password}</span>
       </div>
 
       <button
         type="submit"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        className={clsx("text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", { disabled: signUpIsLoading })}
       >
-        Submit
+         {signUpIsLoading && (
+          <Spinner
+            color="info"
+            className="mr-2"
+            aria-label="Info spinner example"
+          />
+        )}
+        SignUp
       </button>
       <div className="mb-4 text-right">
         <Link className="text-indigo-600 text-md" to="/auth/login">
