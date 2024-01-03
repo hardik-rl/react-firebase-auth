@@ -4,11 +4,9 @@ import profileLogo from "../../img/profile-picture.jpeg";
 import { removeToken } from "../helpers/component/utils";
 
 const Header = ({ user, auth, signOut }) => {
-  // console.log(auth);
   const logoutHandle = () => {
     removeToken("AuthToken");
     signOut(auth);
-    console.log("sassas", auth, user);
   }
 
   return (

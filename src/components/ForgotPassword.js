@@ -1,25 +1,22 @@
 import React, { useState } from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { app } from "../firebase";
 import FormLabel from "../shared/components/FormLabel";
 import FormControl from "../shared/components/FormControl";
-import { Link, useNavigate } from "react-router-dom";
-import { setToken } from "../shared/helpers/component/utils";
+import { toast } from "react-toastify";
 
 const auth = getAuth(app);
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password);
-    if (auth?.currentUser) {
-      setToken("AuthToken", auth?.currentUser?.accessToken);
-      navigate("/");
-    }
+    sendPasswordResetEmail(auth, email);
+    toast.success("Password Reset Successfully, Check Your Email");
+    setTimeout(() => {
+      setEmail("");
+    }, 3000);
   };
   return (
     <form
@@ -29,29 +26,17 @@ const ForgotPassword = () => {
       className="max-w-lg mx-auto mt-20"
     >
       <h1 className="mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
-      Forgot Password
+        Forgot Password
       </h1>
 
       <div className="relative z-0 w-full mb-5 group">
         <FormControl
           type="email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           name="floating_email"
         />
         <FormLabel name="Email address" htmlFor="floating_email" />
-      </div>
-      <div className="relative z-0 w-full mb-5 group">
-        <FormControl
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          name="floating_password"
-        />
-        <FormLabel name="Password" htmlFor="floating_password" />
-      </div>
-      <div className="mb-4 text-right">
-        <Link className="text-indigo-600 text-md font-bold" to="/auth/signup">
-        Forgot Password
-        </Link>
       </div>
       <button
         type="submit"

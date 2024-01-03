@@ -10,9 +10,12 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { app } from "./firebase";
 import { useState } from "react";
 import ForgotPassword from "./components/ForgotPassword";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const auth = getAuth(app);
 
 function App() {
+  const queryClient = new QueryClient();
+
   const [user, setUser] = useState("");
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
@@ -39,16 +42,18 @@ function App() {
   const UnAuthenticated = () => <Outlet />;
 
   return (
-    <Routes>
-      <Route path="/*" element={withAuthenticationHO(Authenticated)} />
-      <Route path="/auth" element={withoutAuthenticationHO(UnAuthenticated)}>
-        <Route index element={<Navigate to={"login"} />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="login" element={<Login />} />
-        <Route path="forgot-password" element={<ForgotPassword />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <QueryClientProvider client={queryClient}>
+      <Routes>
+        <Route path="/*" element={withAuthenticationHO(Authenticated)} />
+        <Route path="/auth" element={withoutAuthenticationHO(UnAuthenticated)}>
+          <Route index element={<Navigate to={"login"} />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </QueryClientProvider>
   );
 }
 
