@@ -9,9 +9,14 @@ export const signupSchema = object({
 
 export const loginSchema = object({
   email: string().trim().email().required(),
-  password: string().required()
+  password: string().required(),
 });
 
 export const forgotPasswordSchema = object({
   email: string().email().required(),
+});
+
+export const resetPasswordSchema = object({
+  password: string().required(),
+  // password_confirmation: string().required(),
 });

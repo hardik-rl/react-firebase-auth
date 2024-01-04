@@ -11,6 +11,7 @@ import { app } from "./firebase";
 import { useState } from "react";
 import ForgotPassword from "./components/ForgotPassword";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ResetPassword from "./components/ResetPassword";
 const auth = getAuth(app);
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="reset-password" element={<ResetPassword />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
