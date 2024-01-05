@@ -49,6 +49,7 @@ const Signup = () => {
       username: "",
       email: "",
       password: "",
+      password_confirmation: "",
     },
     validationSchema: signupSchema,
     validateOnChange: false,
@@ -95,7 +96,22 @@ const Signup = () => {
         <FormLabel name="Password" htmlFor="floating_password" />
         <span className="text-red-500 text-xs">{formik.errors.password}</span>
       </div>
-
+      <div className="relative z-0 w-full mb-5 group">
+        <FormControl
+          type="password"
+          value={formik.values.password_confirmation}
+          onChange={formik.handleChange}
+          className={clsx({ "is-error": formik.errors.password_confirmation })}
+          name="password_confirmation"
+        />
+        <FormLabel
+          name="Confirmation Password"
+          htmlFor="password_confirmation"
+        />
+        <span className="text-red-500 text-xs">
+          {formik.errors.password_confirmation}
+        </span>
+      </div>
       <button
         type="submit"
         className={clsx(

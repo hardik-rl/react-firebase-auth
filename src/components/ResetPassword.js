@@ -38,9 +38,8 @@ const ResetPassword = () => {
 
   const formik = useFormik({
     initialValues: {
-      // email: "",
       password: "",
-      // password_confirmation: "",
+      password_confirmation: "",
     },
     validationSchema: resetPasswordSchema,
     validateOnChange: false,
@@ -79,7 +78,7 @@ const ResetPassword = () => {
         <FormLabel name="Password" htmlFor="password" />
         <span className="text-red-500 text-xs">{formik.errors.password}</span>
       </div>
-      {/* <div className="relative z-0 w-full mb-5 group">
+      <div className="relative z-0 w-full mb-5 group">
         <FormControl
           type="password"
           value={formik.values.password_confirmation}
@@ -94,7 +93,7 @@ const ResetPassword = () => {
         <span className="text-red-500 text-xs">
           {formik.errors.password_confirmation}
         </span>
-      </div> */}
+      </div>
       <button
         type="submit"
         className={clsx(

@@ -6,6 +6,9 @@ export const signupSchema = object({
   password: string()
     .min(8, "Password must have at least 8 characters")
     .required(),
+  password_confirmation: string()
+    .required("Confirm Password is required")
+    .oneOf([ref("password"), null], "Passwords must match"),
 });
 
 export const loginSchema = object({
@@ -18,8 +21,6 @@ export const forgotPasswordSchema = object({
 });
 
 export const resetPasswordSchema = object({
-  // password: string().required(),
-  // password_confirmation: string().required(),
   password: string()
     .required("Password is required")
     .min(6, "Password must be at least 6 characters"),
