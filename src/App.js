@@ -20,7 +20,7 @@ function App() {
   const [user, setUser] = useState("");
   onAuthStateChanged(auth, (currentUser) => {
     if (currentUser) {
-      setUser(currentUser.email);
+      setUser(currentUser);
     } else {
       setUser(null);
     }

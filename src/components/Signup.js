@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   sendEmailVerification,
+  updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase";
 import FormLabel from "../shared/components/FormLabel";
@@ -20,7 +21,14 @@ const auth = getAuth(app);
 const Signup = () => {
   const navigate = useNavigate();
   const { mutate: mutateSignupFn, isLoading: signUpIsLoading } = useMutation(
-    (data) => createUserWithEmailAndPassword(auth, data.email, data.password),
+    (data) =>
+      createUserWithEmailAndPassword(auth, data.email, data.password).then(
+        (userCredential) => {
+          return updateProfile(userCredential.user, {
+            displayName: data.username,
+          });
+        }
+      ),
     {
       onSuccess: () => {
         sendEmailVerification(auth.currentUser);
@@ -38,6 +46,7 @@ const Signup = () => {
 
   const formik = useFormik({
     initialValues: {
+      username: "",
       email: "",
       password: "",
     },
@@ -45,7 +54,7 @@ const Signup = () => {
     validateOnChange: false,
     enableReinitialize: true,
     onSubmit: (values) => {
-      mutateSignupFn(values);
+      mutateSignupFn(values, { displayName: values.username });
     },
   });
   return (
@@ -53,7 +62,17 @@ const Signup = () => {
       <h1 className="mb-10 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
         SignUp
       </h1>
-
+      <div className="relative z-0 w-full mb-5 group">
+        <FormControl
+          type="text"
+          onChange={formik.handleChange}
+          name="username"
+          className={clsx({ "is-error": formik.errors.username })}
+          value={formik.values.username}
+        />
+        <FormLabel name="Username" htmlFor="floating_username" />
+        <span className="text-red-500 text-xs">{formik.errors.username}</span>
+      </div>
       <div className="relative z-0 w-full mb-5 group">
         <FormControl
           type="email"
@@ -79,9 +98,12 @@ const Signup = () => {
 
       <button
         type="submit"
-        className={clsx("text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800", { disabled: signUpIsLoading })}
+        className={clsx(
+          "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+          { disabled: signUpIsLoading }
+        )}
       >
-         {signUpIsLoading && (
+        {signUpIsLoading && (
           <Spinner
             color="info"
             className="mr-2"

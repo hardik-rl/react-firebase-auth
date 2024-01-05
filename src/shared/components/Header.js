@@ -7,7 +7,7 @@ const Header = ({ user, auth, signOut }) => {
   const logoutHandle = () => {
     removeToken("AuthToken");
     signOut(auth);
-  }
+  };
 
   return (
     <div>
@@ -30,8 +30,11 @@ const Header = ({ user, auth, signOut }) => {
           >
             {user && (
               <Dropdown.Header>
+                <span className="block mb-3 truncate text-sm font-bold">
+                  {user.displayName}
+                </span>
                 <span className="block truncate text-sm font-medium">
-                  {user}
+                  {user.email}
                 </span>
               </Dropdown.Header>
             )}
