@@ -1,3 +1,9 @@
 .is-error {
   @apply border !border-red-500;
 }
+.otp-form-control input {
+  @apply !w-12 px-1;
+}
+form {
+  @apply max-md:px-4;
+}

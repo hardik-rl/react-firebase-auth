@@ -129,6 +129,11 @@ const Signup = () => {
         SignUp
       </button>
       <div className="mb-4 text-right">
+        <Link className="text-indigo-600 text-md" to="/auth/signup-with-mobile-number">
+          signup with <strong>Mobile Number</strong>
+        </Link>
+      </div>
+      <div className="mb-4 text-right">
         <Link className="text-indigo-600 text-md" to="/auth/login">
           Already have an account? <strong>Login</strong>
         </Link>

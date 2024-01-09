@@ -12,6 +12,8 @@ import { useState } from "react";
 import ForgotPassword from "./components/ForgotPassword";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ResetPassword from "./components/ResetPassword";
+import SignupWithMobileNumber from "./components/SignupWithMobileNumber";
+import VerifyOtp from "./components/VerifyOtp";
 const auth = getAuth(app);
 
 function App() {
@@ -49,6 +51,8 @@ function App() {
         <Route path="/auth" element={withoutAuthenticationHO(UnAuthenticated)}>
           <Route index element={<Navigate to={"login"} />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="signup-with-mobile-number" element={<SignupWithMobileNumber />} />
+          <Route path="verify-otp/:verificationId" element={<VerifyOtp />} />
           <Route path="login" element={<Login />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
           <Route path="reset-password" element={<ResetPassword />} />
