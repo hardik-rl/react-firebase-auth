@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import OTPInput from "react-otp-input";
 import { useNavigate, useParams } from "react-router-dom";
 import { app } from "../firebase";
+import { setToken } from "../shared/helpers/component/utils";
 
 const VerifyOtp = () => {
   const auth = getAuth(app);
@@ -18,10 +19,9 @@ const VerifyOtp = () => {
     try {
       if (otp !== null && verificationId) {
         const credential = PhoneAuthProvider.credential(verificationId, otp);
-        await signInWithCredential(auth, credential);
+        const res = await signInWithCredential(auth, credential);
+        setToken("AuthToken", res.user.accessToken);
         navigate("/");
-      } else {
-        console.log("OTP entry was canceled by the user.");
       }
     } catch (error) {
       console.log({ error });
