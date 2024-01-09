@@ -30,15 +30,15 @@ const Header = ({ user, auth, signOut }) => {
           >
             {user && (
               <Dropdown.Header>
-                <span className="block mb-3 truncate text-sm font-bold">
+               {user.displayName && <span className="block text-cyan-700 capitalize mb-3 truncate text-sm font-bold">
                   {user.displayName}
-                </span>
+                </span>}
                 <span className="block truncate text-sm font-medium">
                   {user.email}
                 </span>
               </Dropdown.Header>
             )}
-            <Dropdown.Item onClick={logoutHandle}>Logout</Dropdown.Item>
+            <Dropdown.Item onClick={logoutHandle} className="font-bold">Logout</Dropdown.Item>
           </Dropdown>
           <Navbar.Toggle />
         </div>
