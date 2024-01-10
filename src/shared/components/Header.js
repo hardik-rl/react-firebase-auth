@@ -1,9 +1,10 @@
 import React from "react";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import profileLogo from "../../img/profile-picture.jpeg";
 import { removeToken } from "../helpers/component/utils";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ user, auth, signOut }) => {
+  const navigate = useNavigate();
   const logoutHandle = () => {
     removeToken("AuthToken");
     signOut(auth);
@@ -26,7 +27,7 @@ const Header = ({ user, auth, signOut }) => {
           <Dropdown
             arrowIcon={false}
             inline
-            label={<Avatar alt="User settings" img={profileLogo} rounded />}
+            label={<Avatar alt="User settings" img={user.photoURL} rounded />}
           >
             {user && (
               <Dropdown.Header>
@@ -38,6 +39,7 @@ const Header = ({ user, auth, signOut }) => {
                 </span>
               </Dropdown.Header>
             )}
+            <Dropdown.Item onClick={()=> navigate("/profile")}>Profile</Dropdown.Item>
             <Dropdown.Item onClick={logoutHandle} className="font-bold">Logout</Dropdown.Item>
           </Dropdown>
           <Navbar.Toggle />

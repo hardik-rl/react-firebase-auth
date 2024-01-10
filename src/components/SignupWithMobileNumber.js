@@ -30,7 +30,7 @@ const SignupWithMobileNumber = () => {
 
       navigate(`/auth/verify-otp/${verificationId}`);
     } catch (error) {
-      toast.error(error);
+      toast(error);
       console.log({ error });
     }
   };
