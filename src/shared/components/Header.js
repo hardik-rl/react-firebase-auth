@@ -25,22 +25,31 @@ const Header = ({ user, auth, signOut }) => {
         </Navbar.Brand>
         <div className="flex md:order-2">
           <Dropdown
+            className="!min-w-28"
             arrowIcon={false}
             inline
             label={<Avatar alt="User settings" img={user.photoURL} rounded />}
           >
             {user && (
               <Dropdown.Header>
-               {user.displayName && <span className="block text-cyan-700 capitalize mb-3 truncate text-sm font-bold">
-                  {user.displayName}
-                </span>}
-                <span className="block truncate text-sm font-medium">
-                  {user.email}
-                </span>
+                {user.displayName && (
+                  <span className="block text-cyan-700 capitalize truncate text-sm font-bold">
+                    {user.displayName}
+                  </span>
+                )}
+                {user.email && (
+                  <span className="block truncate mt-3 text-sm font-medium">
+                    {user.email}
+                  </span>
+                )}
               </Dropdown.Header>
             )}
-            <Dropdown.Item onClick={()=> navigate("/profile")}>Profile</Dropdown.Item>
-            <Dropdown.Item onClick={logoutHandle} className="font-bold">Logout</Dropdown.Item>
+            <Dropdown.Item onClick={() => navigate("/profile")}>
+              Profile
+            </Dropdown.Item>
+            <Dropdown.Item onClick={logoutHandle} className="font-bold">
+              Logout
+            </Dropdown.Item>
           </Dropdown>
           <Navbar.Toggle />
         </div>
