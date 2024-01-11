@@ -11,10 +11,11 @@ import { app } from "./firebase";
 import { useState } from "react";
 import ForgotPassword from "./components/ForgotPassword";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import ResetPassword from "./components/ResetPassword";
 import SignupWithMobileNumber from "./components/SignupWithMobileNumber";
 import VerifyOtp from "./components/VerifyOtp";
 import MyProfile from "./components/MyProfile";
+import Action from "./components/Action";
+
 const auth = getAuth(app);
 
 function App() {
@@ -37,7 +38,6 @@ function App() {
         >
           <Route path="/about" element={<h1>About</h1>} />
           <Route path="/profile" element={<MyProfile user={user} setUser={setUser}/>} />
-
           <Route path="/contact" element={<h1>contact</h1>} />
         </Route>
       </Routes>
@@ -57,7 +57,7 @@ function App() {
           <Route path="verify-otp/:verificationId" element={<VerifyOtp />} />
           <Route path="login" element={<Login />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
-          <Route path="reset-password" element={<ResetPassword />} />
+          <Route path="action" element={<Action />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

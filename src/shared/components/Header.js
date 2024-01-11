@@ -28,7 +28,7 @@ const Header = ({ user, auth, signOut }) => {
             className="!min-w-28"
             arrowIcon={false}
             inline
-            label={<Avatar alt="User settings" img={user.photoURL} rounded />}
+            label={<Avatar status="online" alt="User settings" img={user.photoURL} rounded />}
           >
             {user && (
               <Dropdown.Header>
