@@ -2,6 +2,7 @@ import React from "react";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import { removeToken } from "../helpers/component/utils";
 import { useNavigate } from "react-router-dom";
+import favicon from "../../img/favicon.svg";
 
 const Header = ({ user, auth, signOut }) => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Header = ({ user, auth, signOut }) => {
       <Navbar fluid rounded>
         <Navbar.Brand>
           <img
-            src="/favicon.svg"
+            src={favicon}
             className="mr-3 h-6 sm:h-9"
             alt="Flowbite React Logo"
           />
