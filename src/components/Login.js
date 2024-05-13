@@ -88,7 +88,7 @@ const Login = () => {
       <button
         type="submit"
         className={clsx(
-          "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+          "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
           { disabled: loginIsLoading }
         )}
       >
@@ -101,6 +101,11 @@ const Login = () => {
         )}
         Log in
       </button>
+      <div className="mt-4 text-right">
+        <a className="text-gray-600 text-sm" href="/auth/signup">
+          Not registered yet? <strong className="text-indigo-600">Create an account</strong>
+        </a>
+      </div>
     </form>
   );
 };

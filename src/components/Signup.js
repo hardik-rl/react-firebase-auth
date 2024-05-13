@@ -112,10 +112,18 @@ const Signup = () => {
           {formik.errors.password_confirmation}
         </span>
       </div>
+      <div className="mb-4 text-right">
+        <Link
+          className="text-gray-600 text-md"
+          to="/auth/signup-with-mobile-number"
+        >
+          signup with <strong className="text-indigo-600">Mobile Number</strong>
+        </Link>
+      </div>
       <button
         type="submit"
         className={clsx(
-          "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+          "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
           { disabled: signUpIsLoading }
         )}
       >
@@ -128,17 +136,10 @@ const Signup = () => {
         )}
         SignUp
       </button>
-      <div className="mb-4 text-right">
-        <Link
-          className="text-indigo-600 text-md"
-          to="/auth/signup-with-mobile-number"
-        >
-          signup with <strong>Mobile Number</strong>
-        </Link>
-      </div>
-      <div className="mb-4 text-right">
-        <Link className="text-indigo-600 text-md" to="/auth/login">
-          Already have an account? <strong>Login</strong>
+
+      <div className="mt-4 text-right">
+        <Link className="text-gray-600 text-sm" to="/auth/login">
+          Already have an account? <strong className="text-indigo-600">Login</strong>
         </Link>
       </div>
     </form>

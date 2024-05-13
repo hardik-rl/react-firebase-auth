@@ -20,7 +20,7 @@ const Header = ({ user, auth, signOut }) => {
             alt="Flowbite React Logo"
           />
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite React
+            Firebase Authentication
           </span>
         </Navbar.Brand>
         <div className="flex md:order-2">
@@ -28,7 +28,14 @@ const Header = ({ user, auth, signOut }) => {
             className="!min-w-28"
             arrowIcon={false}
             inline
-            label={<Avatar status="online" alt="User settings" img={user.photoURL} rounded />}
+            label={
+              <Avatar
+                status="online"
+                alt="User settings"
+                img={user.photoURL}
+                rounded
+              />
+            }
           >
             {user && (
               <Dropdown.Header>
@@ -51,15 +58,15 @@ const Header = ({ user, auth, signOut }) => {
               Logout
             </Dropdown.Item>
           </Dropdown>
-          <Navbar.Toggle />
+          {/* <Navbar.Toggle /> */}
         </div>
-        <Navbar.Collapse>
+        {/* <Navbar.Collapse>
           <Navbar.Link href="/" active>
             Home
           </Navbar.Link>
           <Navbar.Link href="/about">About</Navbar.Link>
           <Navbar.Link href="/contact">Contact</Navbar.Link>
-        </Navbar.Collapse>
+        </Navbar.Collapse> */}
       </Navbar>
     </div>
   );
