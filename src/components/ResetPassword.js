@@ -54,7 +54,7 @@ const ResetPassword = () => {
     if (!actionCode) {
       return navigate("/auth/login");
     }
-  }, []);
+  }, [actionCode, navigate]);
 
   return (
     <form

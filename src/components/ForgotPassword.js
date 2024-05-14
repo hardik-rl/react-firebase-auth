@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { app } from "../firebase";
 import FormLabel from "../shared/components/FormLabel";
