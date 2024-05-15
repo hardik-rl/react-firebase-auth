@@ -33,25 +33,23 @@ const Header = ({ user, auth, signOut }) => {
               <Avatar
                 status="online"
                 alt="User settings"
-                img={user.photoURL}
+                img={user?.photoURL}
                 rounded
               />
             }
           >
-            {user && (
-              <Dropdown.Header>
-                {user.displayName && (
-                  <span className="block text-cyan-700 capitalize truncate text-sm font-bold">
-                    {user.displayName}
-                  </span>
-                )}
-                {user.email && (
-                  <span className="block truncate mt-3 text-sm font-medium">
-                    {user.email}
-                  </span>
-                )}
-              </Dropdown.Header>
-            )}
+            <Dropdown.Header>
+              {user?.displayName && (
+                <span className="block text-cyan-700 capitalize truncate text-sm font-bold">
+                  {user.displayName}
+                </span>
+              )}
+              {user?.email && (
+                <span className="block truncate mt-3 text-sm font-medium">
+                  {user.email}
+                </span>
+              )}
+            </Dropdown.Header>
             <Dropdown.Item onClick={() => navigate("/profile")}>
               Profile
             </Dropdown.Item>
