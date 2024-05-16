@@ -15,6 +15,7 @@ import SignupWithMobileNumber from "./components/SignupWithMobileNumber";
 import VerifyOtp from "./components/VerifyOtp";
 import MyProfile from "./components/MyProfile";
 import Action from "./components/Action";
+import { Home } from "./components/Home";
 
 const auth = getAuth(app);
 
@@ -36,9 +37,8 @@ function App() {
           path="/"
           element={<MainLayout user={user} signOut={signOut} auth={auth} />}
         >
-          <Route path="/about" element={<h1>About</h1>} />
           <Route path="/profile" element={<MyProfile user={user} setUser={setUser}/>} />
-          <Route path="/contact" element={<h1>contact</h1>} />
+          <Route path="/" element={<Home />} />
         </Route>
       </Routes>
     );

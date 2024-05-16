@@ -13,7 +13,7 @@ const Header = ({ user, auth, signOut }) => {
 
   return (
     <div>
-      <Navbar fluid rounded>
+      <Navbar className="pt-4 mb-8" fluid rounded>
         <Navbar.Brand>
           <img
             src={favicon}
